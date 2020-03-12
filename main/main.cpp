@@ -1,4 +1,6 @@
 #include "hash.h"
+#include "sha3.h"
+#include "sha256.h"
 #include <iostream>
 #include <vector>
 
@@ -50,11 +52,16 @@ int main(int argc, char *argv[])
 	};
 
 	string output;
+    string output2;
+    string output3;
 
 	for (auto it = test_vector.begin(); it<test_vector.end(); it++){
 		output=hash(*it);
-
+        output2=sha3_256(*it);
+        output3=sha256(*it);
+       
 		cout <<  "hashName_V" << version() << "()" << "('"<< *it << "'):" << output << endl;
-
+        cout <<  "sha3_V" << version() << "()" << "('"<< *it << "'):" << output2 << endl;
+        cout <<  "sha256_V" << version() << "()" << "('"<< *it << "'):" << output3 << endl;
 	}
 }
